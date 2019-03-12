@@ -19,8 +19,15 @@
                 width: 3px;
                 height: 3px;
                 border: 0px;
-                background: red;
                 position: absolute;
+            }
+
+            div.point.in {
+                background: red;
+            }
+
+            div.point.out {
+                background: white;
             }
         </style>
     </head>
@@ -54,18 +61,12 @@
                 const x = Math.random() * 2 - 1;
                 const y = Math.random() * 2 - 1;
 
+                var inCirc = false;
+
                 // If in circle (ie dist from origin <= 1)
                 if (inCircle(x, y)) {
                     ncirc += 1;               
-
-                    // Add to UI
-                    var newPoint = document.createElement("div");
-                    newPoint.className += " point";
-                    // NOTE: -1px because the box has width 2 and we want to
-                    // center it on the point.
-                    newPoint.style.left = (x + 1) / 2 * 800 - 1 + "px";
-                    newPoint.style.top = (y + 1) / 2 * 800 - 1 + "px";
-                    sqElem.appendChild(newPoint);
+                    inCirc = true;
                 }
 
                 nsq += 1;
@@ -75,6 +76,19 @@
                 nsqElem.textContent = nsq;
                 prElem.textContent = ncirc / nsq;
                 estElem.textContent = ncirc / nsq * 4;
+
+                var newPoint = document.createElement("div");
+                newPoint.className += " point";
+                if (inCirc) {
+                    newPoint.className += " in";
+                } else {
+                    newPoint.className += " out";
+                }
+                // NOTE: -1px because the box has width 2 and we want to
+                // center it on the point.
+                newPoint.style.left = (x + 1) / 2 * 800 - 1 + "px";
+                newPoint.style.top = (y + 1) / 2 * 800 - 1 + "px";
+                sqElem.appendChild(newPoint);
 
                 // Schedule to run again in 1/5 second
                 setTimeout(doLoop, 20);
