@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Happy Pi Day</title>
+        <title>Happy &pi; Day</title>
         <style>
             #estLine {
                 font-size: 18pt;
@@ -29,18 +29,30 @@
             div.point.out {
                 background: white;
             }
+
+            #greeting {
+                left: 324px;
+                top: 387px;
+                width: 151px;
+                height: 26px;
+                position: absolute;
+                font-size: 20pt;
+                z-index: 10;
+            }
         </style>
     </head>
     <body>
-        <h1>Estimating Pi by Sampling a 2x2 square</h1>
+        <h1>Estimating &pi; by Sampling a 2x2 square</h1>
 
         Number of samples in Circle: <span id="ncirc">0</span><br>
         Number of samples in Square but not Circle: <span id="nsq">0</span><br>
         Pr(in Circle | in Square): <span id="pr"></span><br>
 
-        <span id="estLine">Estimated value of Pi: <span id="est"></span></span><br>
+        <span id="estLine">Estimated value of &pi;: <span id="est"></span></span><br>
 
-        <div id="sq"></div>
+        <div id="sq">
+            <span id="greeting">Happy &pi; Day!</span>
+        </div>
 
         <script>
             const inCircle = (x, y) => {
